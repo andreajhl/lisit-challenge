@@ -1,0 +1,42 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+@import '../../../styles/breakpoints';
+
+.search {
+  background: white;
+  @include border(all, $white);
+  border-radius: 10px;
+  padding: 5px 0;
+
+  &__form-control {
+    @include display-flex(space-around);
+
+    &-btn,
+    &-input {
+      @include border(all, none);
+      background: none;
+    }
+    
+    &-btn {
+      color: $brand-main;
+    }
+
+    &-input {
+      width: 80%;
+
+      &:hover,
+      &:active,
+      &:focus,
+      &:focus-visible {
+        @include border(all, none);
+        background: none;
+        outline: none;
+      }
+    }
+  }
+
+  @include tablet {
+    width: 70%;
+    max-width: 250px;
+  }
+}
