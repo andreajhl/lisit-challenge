@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { PiMagnifyingGlassBold } from 'react-icons/pi';
-import { useDebounce } from '../../../hooks/debounce';
+import { useDebounce } from '../../../hooks/useDebounce';
 import { normalizeText } from '../../../utils/strings';
 import './styles.scss';
 
