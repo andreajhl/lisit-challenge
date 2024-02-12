@@ -1,0 +1,32 @@
+@import '../../styles/mixins';
+@import '../../styles/variables';
+
+@keyframes ping {
+  0% {
+    transform: scale(1);
+    opacity: 0.75;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.75;
+  }
+}
+
+.loading {
+  @include size(100%, 100vh);
+  @include display-flex(center);
+
+  &__spinner {
+    position: absolute;
+    display: inline-flex;
+    border-radius: 50%;
+    opacity: 0.75;
+    @include size(6rem, 6rem);
+    background: $background-secondary;
+    animation: ping 1.3s infinite alternate;
+  }
+}
