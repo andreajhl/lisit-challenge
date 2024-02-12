@@ -1,0 +1,35 @@
+@import '../../styles/mixins';
+@import '../../styles/variables';
+@import '../../styles/breakpoints.scss';
+
+.home {
+  @include display-flex(center, center);
+  flex-direction: column;
+  
+  &__title {
+    text-align: center;
+    margin: 20px 0 50px;
+    text-transform: uppercase;
+    @include text(1.5rem, bold, normal, $text-color-primary);
+  }
+
+  &__category-list {
+    @include grid-layout(1fr, 20px);
+
+    &-item {
+      
+    }
+  }
+
+  @include tablet {
+    &__category-list {
+      @include grid-layout(repeat(2, 1fr), 40px);
+    }
+  }
+
+  @include desktop {
+    &__category-list {
+      @include grid-layout(repeat(3, 1fr), 40px);
+    }
+  }
+}
