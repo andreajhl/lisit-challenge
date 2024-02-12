@@ -9,7 +9,7 @@ const Navbar = () => {
   const { setQuery } = useQueryParams();
   const { category, id } = useParams();
 
-  const handleSubmit = (value) => setQuery({ search: value });
+  const handleSubmit = (value) => setQuery({ search: value, page: 1 });
 
   return (
     <nav className='navbar'>
