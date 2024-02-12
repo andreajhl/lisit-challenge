@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import './styles.scss';
 
-const CardEmpty = ({ title, message, code, retry, url }) => ((
+const CardEmpty = ({ title, message, code, retry, url, reloadDocument = false }) => ((
   <main className='error-boundary'>
     <div className='error-boundary__content'>
       <h1 className='error-boundary__content-title'>{title}</h1>
@@ -16,7 +16,7 @@ const CardEmpty = ({ title, message, code, retry, url }) => ((
         <p className='error-boundary__content-message-text'>{message}</p>
       </div>
       <div className='error-boundary__content-retry'>
-        <Link to={url} reloadDocument className='error-boundary__content-retry-link'>
+        <Link to={url} reloadDocument={reloadDocument} className='error-boundary__content-retry-link'>
           {retry} &rarr;
         </Link>
       </div>
