@@ -1,0 +1,93 @@
+@import '../../styles/mixins';
+@import '../../styles/variables';
+@import '../../styles/breakpoints.scss';
+
+.category-detail {
+  @include display-flex(center);
+  flex-direction: column;
+
+  &__container {
+    max-width: 900px;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: $shadow-elevated-card;
+  }
+
+  &__content {
+    width: 100%;
+  }
+
+  &__title {
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  &__subtitle {
+    text-align: center
+  }
+
+  &__characteristics-list,
+  &__additional-links,
+  &__additional {
+    @include grid-layout(1fr, 5px);
+  }
+
+
+  &__characteristics {
+    padding-bottom: 20px;
+    @include border(bottom, $black);
+
+    &-title {
+      margin: 10px 0px;
+    }
+  }
+  
+  &__characteristic {
+    gap: 10px;
+    @include display-flex(flex-start, flex-start);
+
+    &-value {
+      text-transform: capitalize;
+    }
+  }
+
+  &__additional {
+    &-title {
+      margin-bottom: 10px;
+    }
+
+    &-content {
+      width: 100%;
+      padding-top: 20px;
+    }
+
+    &-link {
+      display: block;
+      text-transform: capitalize;
+
+      &::before {
+        content: '- ';
+        color: $background-secondary;
+      }
+    }
+  }
+
+  @include tablet {
+    &__characteristics-list,
+    &__additional {
+      @include grid-layout(repeat(2, 1fr), 10px);
+    }
+
+    &__additional-content {
+      &:first-child {
+        @include border(right, $black);
+      }
+    }
+  }
+
+  @include desktop {
+    &__characteristics-list {
+      @include grid-layout(repeat(3, 1fr), 10px);
+    }
+  }
+}
