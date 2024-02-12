@@ -68,6 +68,11 @@ const wordings = {
   },
   warnings: {
     loading: "Loading",
+    empty: {
+      title: "Sorry!",
+      message: "there are no results for your search",
+      retry: "Return"
+    },
   }
 };
 
