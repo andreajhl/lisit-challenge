@@ -1,12 +1,10 @@
+import { vi } from 'vitest';
 import { render, waitFor } from '@testing-library/react';
 import { MemoryRouter, useParams, useLoaderData } from 'react-router-dom';
-import { vi } from 'vitest';
-import wordings from '../../wordings';
-import { getCategory } from '../../client';
 import { useQueryParams } from '../../hooks/useQueryParams';
+import wordings from '../../wordings';
 import Category from '.';
 
-vi.mock('../../client');
 vi.mock('../../hooks/useQueryParams');
 vi.mock('react-router-dom', async () => {
   const actual = await vi.importActual('react-router-dom');
@@ -27,53 +25,44 @@ const renderCategory = () => (
 
 const { warnings: { empty } } = wordings;
 const mockCategoryData = {
-  pages: 2,
-  list: [
-    { id: 1, name: 'Category 1', films: 3 },
-    { id: 2, name: 'Category 2', films: 5 }
-  ],
+  data: {
+    pages: 2,
+    list: [
+      { id: 1, name: 'Category 1', films: 3 },
+      { id: 2, name: 'Category 2', films: 5 }
+    ],
+  },
+  previuos: null
 };
 
 beforeEach(() => {
-  useLoaderData.mockReturnValue(mockCategoryData);
   useParams.mockReturnValue({ category: 'people' });
-  useQueryParams.mockReturnValue({ querys: {}, setQuery: vi.fn() });
+  useQueryParams.mockReturnValue({ querys: { pages: 1 }, setQuery: vi.fn() });
 });
 
 afterEach(() => { vi.clearAllMocks(); });
 
 describe('<Category />', () => {
   it('renders empty state when category list is empty', async () => {
-    useQueryParams.mockReturnValue({ querys: { search: 'test' }, setQuery: vi.fn() });
-    getCategory.mockResolvedValueOnce({ results: [], count: 0 });
-
+    useLoaderData.mockReturnValue({ data: { list: [], pages: 0 }, previuos: null });
     const { getByText } = renderCategory();
 
     await waitFor(() => {
       const emptyStateText = getByText(empty.title);
-      expect(emptyStateText).toBeInTheDocument();
+      expect(emptyStateText).toBeInTheDocument();      
     });
   });
 
   it('renders category list when category list is not empty', async () => {
+    useLoaderData.mockReturnValue(mockCategoryData);
     const { getByText } = renderCategory();
 
-    const categoryItem1 = getByText('Category 1');
-    const categoryItem2 = getByText('Category 2');
+    await waitFor(() => {
+      const categoryItem1 = getByText('Category 1');
+      const categoryItem2 = getByText('Category 2');
 
-    expect(categoryItem1).toBeInTheDocument();
-    expect(categoryItem2).toBeInTheDocument();
-  });
-
-  it('renders alert when an error occurs while fetching category data', async () => {
-    useQueryParams.mockReturnValue({ querys: { search: 'test' }, setQuery: vi.fn() });
-    getCategory.mockRejectedValueOnce(new Error());
-
-    const { getByRole } = renderCategory();
-
-    await waitFor(async () => {
-      const errorAlert = getByRole('alert');
-      expect(errorAlert).toBeInTheDocument();
-    });
+      expect(categoryItem1).toBeInTheDocument();
+      expect(categoryItem2).toBeInTheDocument();
+    })
   });
 });

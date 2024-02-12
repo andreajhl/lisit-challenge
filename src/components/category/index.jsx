@@ -1,51 +1,49 @@
 import { useEffect, useState } from 'react';
 import { Link, useLoaderData, useParams } from "react-router-dom";
 import { useQueryParams } from '../../hooks/useQueryParams';
-import { formatCategoryData } from '../../routes/mappers';
-import { logErrors } from '../../utils/logErros';
-import { getCategory } from '../../client';
+import { useDebounce } from '../../hooks/useDebounce';
 import Pagination from '../ui/pagination';
 import CardEmpty from '../ui/cardEmpty';
-import Alert from '../ui/alert';
 import wordings from "../../wordings";
 import './styles.scss';
 
+const INTERVAL_TIME = 300;
+
 const Category = () => {
-  const { categories, notFound, warnings } = wordings;
+  const { categories, warnings } = wordings;
 
   const { category } = useParams();
-  const { pages, list } =  useLoaderData();
-  const { querys: { search }, setQuery } = useQueryParams();
+  const { data: { list, pages }, previuos } =  useLoaderData();
+  const { querys: { search, page }, setQuery } = useQueryParams();
 
   const [categoryData, setCategoryData] = useState({ list, pages });
-  const [currentPage, setCurrentPage] = useState();
-  const [alert, setAlert] = useState();
-
-  const getCategoryData = async (params) => {
-    try {
-      const data = await getCategory(category, params);
-      return formatCategoryData(data);
-    } catch (error) {
-      logErrors(error);
-      setAlert({ show: true, status: 'error', ...notFound });
-    }
-  };
+  const [currentPage, setCurrentPage] = useState(page - 1);
+  const setQueryDebounced = useDebounce(setQuery, INTERVAL_TIME);
 
   const getNextPage = async () => {
-    const params = { page: currentPage + 1, ...(search && { search }) };
-
-    const data = await getCategoryData(params);
-    if (data) setCategoryData({ ...categoryData, list: data.list });
-  }
-
-  const getSearchCategory = async () => {
-    const data = await getCategoryData({ search });
-    data ? setCategoryData(data) : setQuery({});
+    const queryParams = {
+      page: currentPage + 1,
+      ...(search && { search }),
+    };
+    
+    setQueryDebounced(queryParams);
   };
 
-  useEffect(() => { search && getSearchCategory() }, [search]);
-  useEffect(() => { (currentPage || currentPage === 0) && getNextPage() }, [currentPage]);
-
+  useEffect(() => {
+    if (currentPage || currentPage === 0) {
+      getNextPage();
+    }
+  }, [currentPage]);
+  useEffect(() => {
+    setCategoryData({ ...categoryData, list });
+  }, [list]);
+  useEffect(() => { 
+    if(previuos) {
+      setCurrentPage(0);
+      setCategoryData({ ...categoryData, pages });
+    }
+  }, [previuos])
+  
   return (
     <div className='category'>
       <div className='category__main'>
@@ -87,7 +85,6 @@ const Category = () => {
           />
         )
       }
-      { alert?.show && <Alert {...alert} />}
     </div>
   );
 };
