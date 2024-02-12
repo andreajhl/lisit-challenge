@@ -6,7 +6,6 @@ import {
   getPlanetsDetail,
   getStarshipsDetail,
 } from '../../client';
-import { createUrl, getQuerysUrl } from '../../utils/urls';
 import {
   formatFilmsData,
   formatPeopleData,
@@ -14,6 +13,7 @@ import {
   formatCategoryData,
   formatStarshipsData,
 } from '../mappers';
+import { createUrl, getQuerysUrl } from '../../utils/urls';
 
 export const categoriesLoader = async () => getCategories();
 

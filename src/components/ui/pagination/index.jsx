@@ -2,8 +2,9 @@ import { useEffect, useMemo, useState } from 'react';
 import classNames from 'classnames';
 import './styles.scss';
 
+const MAX_ITEMS_PAGINATION = 3;
+
 const Pagination = ({ availablePages, currentPage = 0, setCurrentPage }) => {
-  const MAX_ITEMS_PAGINATION = 3;
   const isFirstPage = useMemo(() => currentPage - 1 < 0, [currentPage]);
   const isLastPage = useMemo(() => currentPage + 1 >= availablePages, [currentPage])
 
@@ -14,7 +15,7 @@ const Pagination = ({ availablePages, currentPage = 0, setCurrentPage }) => {
 
     const allPages = Array.from({ length: availablePages }, (_, index) => index);
     setVisiblePages(allPages.slice(page, page + MAX_ITEMS_PAGINATION));
-  }
+  };
 
   const goToPage = (page) => () => setCurrentPage(page);
   const goToNextPage = () => {
@@ -36,7 +37,7 @@ const Pagination = ({ availablePages, currentPage = 0, setCurrentPage }) => {
   };
 
   useEffect(() => { updateVisiblePages(currentPage) }, [availablePages]);
-  
+
   return (
     <div className='pagination'>
       <button
