@@ -1,0 +1,84 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.alert {
+  position: absolute;
+  width: 80%;
+  bottom: 10px;
+  padding: 5px 10px;
+  border-radius: 10px;
+  @include display-flex(space-between, flex-start);
+
+  &__content {
+    display: flex;
+    gap: 10px;
+
+    &-icon {
+      font-size: 1.5rem;
+      stroke-width: 0.5;
+    }
+  }
+
+  &__close-btn {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  &-error {
+    background: $bg-error;
+
+    .alert__content-text,
+    .alert__close-btn {
+      color: $text-error;
+    }
+
+    svg {
+      color: $icon-error;
+    }
+  }
+
+  &-success {
+    background: $bg-success;
+
+    .alert__content-text,
+    .alert__close-btn {
+      color: $text-success;
+    }
+
+    svg {
+      color: $icon-success;
+    }
+  }
+
+  &-info {
+    background: $bg-info;
+
+    .alert__content-text,
+    .alert__close-btn {
+      color: $text-info;
+    }
+
+    svg {
+      color: $icon-info;
+    }
+  }
+
+  &-warning {
+    background: $bg-warning;
+
+    .alert__content-text,
+    .alert__close-btn {
+      color: $text-warning;
+    }
+
+    svg {
+      color: $icon-warning;
+    }
+  }
+}
+
+
+.hidden {
+  display: none;
+  visibility: hidden;
+}
