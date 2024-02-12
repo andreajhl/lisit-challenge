@@ -8,9 +8,9 @@ const Home = () => {
 
   const categoryList =  useLoaderData();
   const assets = {
-    people: '/assets/images/people.png',
-    planets: '/assets/images/planets.png',
-    starships: '/assets/images/starships.png',
+    people: '/images/people.png',
+    planets: '/images/planets.png',
+    starships: '/images/starships.png',
   };
 
   return (

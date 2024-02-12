@@ -16,7 +16,7 @@ const Navbar = () => {
       <Link to='/' className='navbar__brand'>
         <img
           alt='brand'
-          src='/assets/images/brand.png'
+          src='/images/brand.png'
           className='navbar__brand-img'
         />
         <p className='navbar__brand-title'>{title}</p>
