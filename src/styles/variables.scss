@@ -1,0 +1,43 @@
+$white: #fff;
+$black: #000;
+
+$brand-main: #4d00b2;
+$brand-main-hover: #4d00b296;
+$brand-main-active: #3e0090;
+
+
+$bg-error: rgb(253, 237, 237);
+$text-error: rgb(95, 33, 32);
+$icon-error: rgb(211, 47, 47);
+
+$bg-success: rgb(237, 247, 237);
+$text-success: rgb(30, 70, 32);
+$icon-success: rgb(46, 125, 50);
+
+$bg-info: rgb(229, 246, 253);
+$text-info: rgb(1, 67, 97);
+$icon-info: rgb(2, 136, 209);
+
+$bg-warning: rgb(255, 244, 229);
+$text-warning: rgb(102, 60, 0);
+$icon-warning: rgb(237, 108, 2);
+
+
+$background-primary: rgba(255, 255, 255, 1);
+$background-secondary: #6211b9;
+$background-tertiary: #8f6dbb;
+
+
+$text-color-primary: rgba($black, 0.8);
+$text-color-secondary: rgba($black, 0.55);
+$text-color-disabled: rgba($black, 0.25);
+
+
+$bg-body: rgb(255, 255, 255);
+$bg-body-secondary: rgba($brand-main, 0.5) ;
+
+
+$shadow-elevated-text: 0 8px 16px 0 rgba(0, 0, 0, 0.1);
+$shadow-elevated-card: 0px 2px 1px -1px rgba(0,0,0,0.2),
+                        0px 1px 1px 0px rgba(0,0,0,0.14),
+                        0px 1px 3px 0px rgba(0,0,0,0.12);

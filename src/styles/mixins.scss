@@ -1,0 +1,43 @@
+@import './variables';
+
+@mixin display-flex ($justify-content, $align-items: center, $flow: row nowrap) {
+  display: flex;
+  align-items: $align-items;
+  justify-content: $justify-content;
+  flex-flow: $flow;
+}
+
+@mixin grid-layout($grid-template-columns, $grid-gap: 0, $grid-auto-rows: auto) {
+  display: grid;
+  grid-template-columns: $grid-template-columns;
+  grid-gap: $grid-gap;
+  grid-auto-rows: $grid-auto-rows
+}
+
+@mixin text ($font-size, $font-weight: normal, $line-height: normal, $color: $title-color) {
+  color: $color;
+  font-size: $font-size;
+  font-weight: $font-weight;
+  line-height: $line-height;
+}
+
+@mixin border($direction, $color, $width: 1px, $style: solid) {
+  @if $color == none {
+    @if $direction == all {
+      border: none;
+    } @else {
+      border-#{$direction}: none;
+    }
+  } @else {
+    @if $direction == all {
+      border: $width $style $color;
+    } @else {
+      border-#{$direction}: $width $style $color;
+    }
+  }
+}
+
+@mixin size($width, $height) {
+  width: $width;
+  height: $height;
+}
