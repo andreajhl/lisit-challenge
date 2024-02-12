@@ -85,9 +85,6 @@
 * #### Sass
 * #### Vitest
 <br>
-<br>
-
-<br>
 
 #### Cómo Probar
 
@@ -141,3 +138,15 @@ En caso de que ocurra un error al cargar un módulo o al intentar acceder a una 
 <br>
 <img src="public/images/readme/not-found.png" width="800" height="400" />
 <br>
+
+### Particularidades
+
+#### Debounce
+
+* Paginación: Se aplicó un efecto debounce de 300ms al paginado para optimizar las peticiones. Esto asegura que solo se realice la petición del último ítem seleccionado después de un breve período de tiempo.
+
+* Buscador: Para mejorar la eficiencia de las búsquedas, se implementó un efecto debounce que retrasa la llamada hasta que haya un tiempo de inactividad. Sin embargo, también se ofrece la opción de realizar la búsqueda manualmente haciendo clic en el ícono de la lupa.
+
+#### Parámetros en la URL
+
+Los parámetros de filtrado, como el ID o la búsqueda realizada por el usuario en el campo de búsqueda, así como la página actualmente visualizada, se mantienen en la URL. Esto permite recargar la página o compartir la URL y mantener la vista actual.
