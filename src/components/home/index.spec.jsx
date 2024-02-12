@@ -42,7 +42,7 @@ describe('Home', () => {
     categoryLinks.forEach((link, index) => {
       const category = categoryKeys[index];
 
-      expect(link).toHaveAttribute('href', `/category/${category}`);
+      expect(link).toHaveAttribute('href', `/category/${category}?page=1`);
       expect(getByText(categories[category])).toBeInTheDocument();
     });
   });

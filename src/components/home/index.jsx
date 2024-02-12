@@ -21,7 +21,7 @@ const Home = () => {
           Object.keys(categoryList).map(category => (
             <Link
               key={category}
-              to={`category/${category}`}
+              to={`category/${category}?page=1`}
             >
               <CardMedia
                 url={assets[category]}
