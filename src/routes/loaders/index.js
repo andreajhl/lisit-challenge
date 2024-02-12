@@ -6,6 +6,7 @@ import {
   getPlanetsDetail,
   getStarshipsDetail,
 } from '../../client';
+import { createUrl, getQuerysUrl } from '../../utils/urls';
 import {
   formatFilmsData,
   formatPeopleData,
@@ -36,7 +37,15 @@ export const starshipsLoader = async ({ params: { id } }) => {
   return formatStarshipsData(data);
 }
 
-export const categoryLoader = async ({ params: { category } }) => {
-  const data = await getCategory(category);
-  return formatCategoryData(data, category)
+export const categoryLoader = async ({ request, params: { category } }) => {
+  const url = createUrl(request.url);
+  const { search, page } = getQuerysUrl(url.search);
+
+  const params = { page, ...(search && { search }) };
+  const data = await getCategory(category, params);
+
+  return {
+    data: formatCategoryData(data, category),
+    previuos: !data.previous
+  }
 }
