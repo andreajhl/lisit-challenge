@@ -1,15 +1,23 @@
+@import '../../styles/breakpoints';
+
 .layout {
   &-header {
     position: fixed;
     z-index: 10;
     width: 100%;
-    top: 0;
     height: 10vh;
+    top: 0;
   }
 
   &-main {
     height: 90vh;
     margin-top: 50px;
-    padding: 30px 40px;
+    padding: 30px 20px;
+  }
+
+  @include desktop {
+    &-main {
+      padding: 30px 40px;
+    }
   }
 }
