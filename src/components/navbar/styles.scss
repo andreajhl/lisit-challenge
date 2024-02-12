@@ -1,0 +1,31 @@
+@import '../../styles/mixins';
+@import '../../styles/variables';
+@import '../../styles/breakpoints';
+
+.navbar {
+  background: $black;
+  padding: 10px 20px;
+  @include display-flex(space-between, center);
+
+  &__brand {
+    gap: 10px;
+    text-decoration: none;
+    @include display-flex(center, center);
+
+    &-title {
+      display: none;
+    }
+
+    &-img {
+      width: 60px;
+      height: auto;
+    }
+  }
+
+  @include tablet {
+    &__brand-title {
+      display: inline;
+      @include text(1.3rem, 600, normal, $white)
+    }
+  }
+}
