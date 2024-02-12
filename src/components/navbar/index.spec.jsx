@@ -33,7 +33,7 @@ const renderNavBar = () => render(
 );
 
 describe('Navbar', () => {
-  test('renders Navbar with brand title', () => {
+  it('renders Navbar with brand title', () => {
     useParams.mockReturnValue({})
     const { getByText } = renderNavBar();
 
@@ -41,7 +41,7 @@ describe('Navbar', () => {
     expect(brandTitle).toBeInTheDocument();
   });
 
-  test('renders Search component when category is provided', () => {
+  it('renders Search component when category is provided', () => {
     useParams.mockReturnValue({ category: 'people' })
     const { getByPlaceholderText } = renderNavBar();
 

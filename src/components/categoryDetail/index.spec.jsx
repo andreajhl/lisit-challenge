@@ -36,7 +36,7 @@ const renderCategoryDetail = () => (
 );
 
 describe('CategoryDetails', () => {
-  test('renders category details correctly', () => {
+  it('renders category details correctly', () => {
     const { getByText } = renderCategoryDetail();
 
     const title = getByText(mockLoaderData.title);
@@ -54,7 +54,7 @@ describe('CategoryDetails', () => {
     expect(characteristicValue).toBeInTheDocument();
   });
 
-  test('renders links of additional information to be able to navigate', () => {
+  it('renders links of additional information to be able to navigate', () => {
     const { getByText, getAllByRole } = renderCategoryDetail();
     const additionalInfo = mockLoaderData.additionalInformation.films;
 

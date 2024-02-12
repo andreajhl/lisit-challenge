@@ -26,12 +26,12 @@ const renderHome = () => (
 );
 
 describe('Home', () => {
-  test('renders Home correctly', () => {
+  it('renders Home correctly', () => {
     const { getByText } = renderHome();
     expect(getByText(title)).toBeInTheDocument();
   });
 
-  test('renders a link for each category', () => {
+  it('renders a link for each category', () => {
     const { getAllByRole, getByText } = renderHome();
 
     const categoryLinks = getAllByRole('link');
