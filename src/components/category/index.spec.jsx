@@ -26,7 +26,7 @@ const renderCategory = () => (
 const { warnings: { empty } } = wordings;
 const mockCategoryData = {
   data: {
-    pages: 2,
+    pages: 4,
     list: [
       { id: 1, name: 'Category 1', films: 3 },
       { id: 2, name: 'Category 2', films: 5 }
@@ -36,6 +36,7 @@ const mockCategoryData = {
 };
 
 beforeEach(() => {
+  useLoaderData.mockReturnValue(mockCategoryData);
   useParams.mockReturnValue({ category: 'people' });
   useQueryParams.mockReturnValue({ querys: { pages: 1 }, setQuery: vi.fn() });
 });
@@ -44,7 +45,7 @@ afterEach(() => { vi.clearAllMocks(); });
 
 describe('<Category />', () => {
   it('renders empty state when category list is empty', async () => {
-    useLoaderData.mockReturnValue({ data: { list: [], pages: 0 }, previuos: null });
+    useLoaderData.mockReturnValue({ data: { list: [], pages: 0 }, previuos: true });
     const { getByText } = renderCategory();
 
     await waitFor(() => {
@@ -54,7 +55,6 @@ describe('<Category />', () => {
   });
 
   it('renders category list when category list is not empty', async () => {
-    useLoaderData.mockReturnValue(mockCategoryData);
     const { getByText } = renderCategory();
 
     await waitFor(() => {

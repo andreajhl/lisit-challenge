@@ -16,9 +16,9 @@ const Category = () => {
   const { data: { list, pages }, previuos } =  useLoaderData();
   const { querys: { search, page }, setQuery } = useQueryParams();
 
-  const [categoryData, setCategoryData] = useState({ list, pages });
-  const [currentPage, setCurrentPage] = useState(page - 1);
   const setQueryDebounced = useDebounce(setQuery, INTERVAL_TIME);
+  const [categoryData, setCategoryData] = useState({ list, pages });
+  const [currentPage, setCurrentPage] = useState(page - 1 || 0);
 
   const getNextPage = async () => {
     const queryParams = {
@@ -34,16 +34,18 @@ const Category = () => {
       getNextPage();
     }
   }, [currentPage]);
-  useEffect(() => {
-    setCategoryData({ ...categoryData, list });
-  }, [list]);
+
   useEffect(() => { 
-    if(previuos) {
-      setCurrentPage(0);
-      setCategoryData({ ...categoryData, pages });
-    }
-  }, [previuos])
+    if (!previuos) return;
   
+    setCurrentPage(0);
+    setCategoryData(state => ({ ...state, pages }));
+  }, [previuos, list]);
+
+  useEffect(() => {
+    setCategoryData(state => ({ ...state, list, }));
+  }, [list]);
+
   return (
     <div className='category'>
       <div className='category__main'>
@@ -71,7 +73,8 @@ const Category = () => {
             : (
               <CardEmpty
                 {...warnings.empty}
-                link={`../${category}`}
+                reloadDocument={true}
+                link={`/${category}`}
               />
             )
         }
