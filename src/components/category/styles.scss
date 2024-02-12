@@ -1,0 +1,69 @@
+@import '../../styles/mixins';
+@import '../../styles/variables';
+@import '../../styles/breakpoints.scss';
+
+.category {
+  @include display-flex(space-between);
+  flex-direction: column;
+  height: 100%;
+
+  &__main {
+    @include display-flex(space-between);
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
+
+    &-title {
+      text-align: center;
+      width: 100%;
+      margin: 0;
+    }
+
+    &-list {
+      width: 100%;
+      max-width: 900px;
+      @include grid-layout(repeat(2, 1fr), 10px);
+    }
+  }
+
+  &__item {
+    padding: 0 10px;
+    transition: color 0.2s ease;
+
+    &__item-title,
+    &__item-subtitle {
+      margin: 0px
+    }
+
+    &:hover {
+      color: $background-secondary
+    }
+  }
+
+  &__empty {
+    &-title {
+      color: $text-color-disabled;
+    }
+
+    &-retry {
+      margin-top: 30px;
+      background: $background-secondary;
+      color: $white;
+      cursor: pointer;
+      padding: 10px;
+      border-radius: 10px;
+    }
+  }
+
+  @include tablet {
+    &__main-list {
+      @include grid-layout(repeat(3, 1fr), 10px);
+    }
+  }
+
+  @include desktop {
+    &__main-list {
+      @include grid-layout(repeat(4, 1fr), 10px);
+    }
+  }
+}
