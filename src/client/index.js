@@ -29,6 +29,7 @@ export const getCategory = async (category, params = {}) => {
     return data;
   } catch (error) {
     logErrors(error, LOG_MESSAGE);
+    throw error;
   }
 };
 
@@ -40,6 +41,7 @@ export const getCategories = async () => {
     return { people, planets, starships };
   } catch (error) {
     logErrors(error, LOG_MESSAGE);
+    throw error;
   }
 };
 
@@ -61,6 +63,7 @@ export const getFilmsDetail = async (id) => {
     return formatFilmsDetail(data);
   } catch (error) {
     logErrors(error);
+    throw error;
   }
 };
 
@@ -73,6 +76,7 @@ export const getStarshipsDetail = async (id) => {
     return formatStarshipDetail(data, filmsData, pilotsData);
   } catch (error) {
     logErrors(error);
+    throw error;
   }
 };
 
@@ -85,6 +89,7 @@ export const getPlanetsDetail = async (id) => {
     return formatPlanetsDetail(data, filmsData, residentsData);
   } catch (error) {
     logErrors(error);
+    throw error;
   }
 };
 
@@ -97,5 +102,6 @@ export const getPeopleDetail = async (id) => {
     return formatPeopleDetail(data, filmsData, starshipsData);
   } catch (error) {
     logErrors(error);
+    throw error;
   }
 };
